@@ -9,6 +9,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Day2\input2.txt" />
+    </ItemGroup>
+
+    <ItemGroup>
       <None Remove="input.txt" />
       <Content Include="input.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
