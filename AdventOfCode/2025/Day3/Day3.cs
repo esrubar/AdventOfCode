@@ -5,16 +5,18 @@ public abstract class Day3
     public static void Solve()
     {
         var input = File.ReadAllLines("Day3/Input.txt");
-        var result = 0;
+        var result = 0L;
         foreach (var line in input)
         {
-            var password = FindPassword(line);
+            var password = long.Parse(FindPasswordWith12Elements(line));
+            Console.WriteLine(password);
             result += password;
         }
         Console.WriteLine("Result: " + result);
     }
 
-    private static int FindPassword(string line)
+    // Parte 1
+    private static int FindPasswordWith2Elements(string line)
     {
         for (var i = 9; i > 0; i--)
         {
@@ -34,4 +36,36 @@ public abstract class Day3
         return 0;
     }
     
+    // Parte 2
+    private static string FindPasswordWith12Elements(string line, int maxLenght = 12)
+    {
+        var stack = new Stack<char>();
+        var toRemove = line.Length - maxLenght;
+
+        foreach (var c in line)
+        {
+            /*
+             * Peek() --> Devuelve el elemento de arriba sin quitarlo
+             * Pop() --> Quita y devuelve el elemento de arriba
+             * Push() --> Añade un elemento arriba
+             */
+            while (stack.Count > 0 && stack.Peek() < c && toRemove > 0)
+            {
+                stack.Pop();
+                toRemove--;
+            }
+            stack.Push(c);
+        }
+
+        // Si sobran elementos por eliminar
+        while (toRemove > 0)
+        {
+            stack.Pop();
+            toRemove--;
+        }
+
+        var arr = stack.ToArray();
+        Array.Reverse(arr);
+        return new string(arr);
+    }
 }

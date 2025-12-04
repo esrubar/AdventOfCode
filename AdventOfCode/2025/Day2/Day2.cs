@@ -39,6 +39,7 @@ public abstract class Day2
         Console.WriteLine("Result: " + result);
     }
 
+    // Part 1
     private static bool AllSubstringsRepeatedTwice(string s)
     {
         if (s.Length % 2 != 0)
@@ -52,6 +53,7 @@ public abstract class Day2
         return first == second;
     }
     
+    // Part 2
     private static bool AllSubstringsRepeatedAtLeastTwice(string s)
     {
         var n = s.Length;
