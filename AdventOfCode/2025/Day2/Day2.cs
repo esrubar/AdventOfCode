@@ -2,8 +2,12 @@ namespace _2025.Day2;
 
 public abstract class Day2
 {
-    public static void Solve(string[] input)
+    public static void Solve()
     {
+        var input = File.ReadAllLines("Day2/Input.txt");
+        // para que la linea de arriba funcione
+        //btn derecho sobre el archivo --> properties--> editable --> build action: content --> copy to output directory: copy always
+        
         var inputList = new List<string>();
         foreach (var row in input)
         {
