@@ -24,7 +24,7 @@ public abstract class Day2
 
             for (var i = element[0]; i <  element[1] + 1; i++)
             {
-                var a = AllSubstringsRepeatedTwice(i.ToString());
+                var a = AllSubstringsRepeatedAtLeastTwice(i.ToString());
                 if (!a) continue;
                 
                 Console.WriteLine(i);
@@ -46,5 +46,28 @@ public abstract class Day2
         var second = s.Substring(half, half);
 
         return first == second;
+    }
+    
+    private static bool AllSubstringsRepeatedAtLeastTwice(string s)
+    {
+        var n = s.Length;
+
+        for (var len = 1; len <= n / 2; len++)
+        {
+            // La secuencia base debe encajar sin decimales
+            if (n % len != 0)
+                continue;
+
+            var seq = s[..len];
+
+            // Construir el posible string repetido para comprobar si es igual
+            var repeats = n / len;
+            var optionBuild = string.Concat(Enumerable.Repeat(seq, repeats));
+
+            if (optionBuild == s)
+                return true;
+        }
+
+        return false;
     }
 }
